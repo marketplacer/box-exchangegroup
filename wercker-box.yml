@@ -5,7 +5,7 @@ type: main
 platform: ubuntu@12.04
 description: Ruby 2, node.js, sphinx, phantomjs, karma, geocitylite.
 packages:
-  - nodejs@0.10.19
+  - nodejs@0.10.17
   - sphinxsearch@2.0.8
   - phantomjs@1.9.1
 keywords:
@@ -17,7 +17,7 @@ script: |
   sudo apt-get update
 
   # node.js
-  export NODEVERSION=0.10.19
+  export NODEVERSION=0.10.17
   sudo apt-get install -y wget build-essential
   cd $HOME
   mkdir nodeinstall
