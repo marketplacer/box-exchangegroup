@@ -1,16 +1,24 @@
-name: ubuntu12.04-ruby2.0-nodejs0.10
+name: exchangegroup
 version: 0.0.1
-inherits: wercker/ubuntu12.04-ruby2.0.0@0.1.5
+inherits: wercker/ubuntu12.04-ruby2.0.0@0.3.0
 type: main
 platform: ubuntu@12.04
+description: Ruby 2, node.js, sphinx, phantomjs, karma.
 packages:
-  - nodejs@0.10.11
+  - nodejs@0.10.19
+  - sphinxsearch@2.0.8
+  - phantomjs@1.9.1
 keywords:
   - nodejs
+  - sphinxsearch
+  - karma
+
 script: |
-  export NODEVERSION=0.10.11
   sudo apt-get update
-  sudo apt-get install wget build-essential
+
+  # node.js
+  export NODEVERSION=0.10.19
+  sudo apt-get install -y wget build-essential
   cd $HOME
   mkdir nodeinstall
   cd nodeinstall
@@ -23,3 +31,19 @@ script: |
   cd $HOME
   rm -fr nodeinstall
   node -v
+
+  # sphinx
+  wget http://sphinxsearch.com/files/sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
+  sudo dpkg -i sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
+
+  # phantomjs
+  wget https://phantomjs.googlecode.com/files/phantomjs-1.9.1-linux-x86_64.tar.bz2
+  tar xfj phantomjs-1.9.1-linux-x86_64.tar.bz2
+  sudo cp /tmp/phantomjs-1.9.1-linux-x86_64/bin/phantomjs /usr/local/bin
+
+  # bundler 1.4 pre
+  sudo gem install bundler --pre -v 1.4.0.pre.2
+
+  # karma
+  sudo apt-get install -y libqt4-dev qt4-qmake
+  sudo npm install -g karma
