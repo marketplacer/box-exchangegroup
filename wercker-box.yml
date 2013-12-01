@@ -14,27 +14,37 @@ keywords:
   - nodejs
   - sphinxsearch
   - karma
+init-script: |
+  sudo stop mysql
+  sudo mkdir /tmp/ramdisk
+  sudo mount -t tmpfs -o size=128M tmpfs /tmp/ramdisk/
+  sudo mv /var/lib/mysql /tmp/ramdisk/mysql
+  sudo ln -s /tmp/ramdisk/mysql/ /var/lib/mysql
+  sudo chmod -R 700 /var/lib/mysql
+  sudo chown -R mysql:mysql /var/lib/mysql
+  sudo start mysql
+
 script: |
   sudo apt-get update
 
   # mysql
   sudo apt-get install mysql-server-5.5
-  sudo status mysql
-  sudo ls /var/log
-  sudo ls /var/log/mysql
-  sudo cat /var/log/mysql.err
+  # sudo status mysql
+  # sudo ls /var/log
+  # sudo ls /var/log/mysql
+  # sudo cat /var/log/mysql.err
 
-  false
+  # false
 
-  cat <<EOM > my.cnf
-  [mysqld]
-  innodb_flush_log_at_trx_commit = 0
-  innodb_buffer_pool_size = 512M
-  EOM
+  # cat <<EOM > my.cnf
+  # [mysqld]
+  # innodb_flush_log_at_trx_commit = 0
+  # innodb_buffer_pool_size = 512M
+  # EOM
 
-  sudo cp my.cnf /etc/mysql/my.cnf
-  sudo /etc/init.d/mysql restart
-  sudo update-rc.d mysql defaults
+  # sudo cp my.cnf /etc/mysql/my.cnf
+  # sudo /etc/init.d/mysql restart
+  # sudo update-rc.d mysql defaults
 
   # node.js
   export NODEVERSION=0.10.22
