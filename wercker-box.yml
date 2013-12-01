@@ -14,6 +14,15 @@ keywords:
   - nodejs
   - sphinxsearch
   - karma
+init-script: |
+  sudo stop mysql
+  sudo mkdir /tmp/ramdisk
+  sudo mount -t tmpfs -o size=128M tmpfs /tmp/ramdisk/
+  sudo mv /var/lib/mysql /tmp/ramdisk/mysql
+  sudo ln -s /tmp/ramdisk/mysql/ /var/lib/mysql
+  sudo chmod -R 700 /var/lib/mysql
+  sudo chown -R mysql:mysql /var/lib/mysql
+  sudo start mysql
 script: |
   sudo apt-get update
 
