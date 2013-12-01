@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.4
+version: 0.0.5
 inherits: wercker/ubuntu12.04-ruby2.0.0@0.3.0
 type: main
 platform: ubuntu@12.04
@@ -17,23 +17,9 @@ keywords:
 script: |
   sudo apt-get update
 
-  # percona
+  # mysql
   sudo apt-get install mysql-server-5.5
 
-  # mysql ramdisk
-  sudo /etc/init.d/mysql stop
-  sudo mkdir /tmp/ramdisk
-  sudo mount -t tmpfs -o size=256M tmpfs /tmp/ramdisk/
-
-  # Move MySQL data
-  sudo mv /var/lib/mysql /tmp/ramdisk/mysql
-  sudo ln -s /tmp/ramdisk/mysql/ /var/lib/mysql
-
-  # Update permissions
-  sudo chmod -R 700 /var/lib/mysql
-  sudo chown -R mysql:mysql /var/lib/mysql
-
-  sudo /etc/init.d/mysql restart
   sudo update-rc.d mysql defaults
 
   # node.js
