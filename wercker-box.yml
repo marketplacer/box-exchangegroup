@@ -30,6 +30,8 @@ script: |
   sudo apt-get install percona-server-5.5 percona-server-client-5.5
 
   # mysql ramdisk
+  ls /etc/init
+  ls /etc/init.d
   sudo stop mysql
   sudo mkdir /tmp/ramdisk
   sudo mount -t tmpfs -o size=256M tmpfs /tmp/ramdisk/
