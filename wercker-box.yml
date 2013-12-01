@@ -18,8 +18,8 @@ script: |
   # percona apt
   sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
 
-  echo "deb http://repo.percona.com/apt VERSION main" > source
-  echo "deb-src http://repo.percona.com/apt VERSION main" >> source
+  echo "deb http://repo.percona.com/apt precise main" > source
+  echo "deb-src http://repo.percona.com/apt precise main" >> source
   sudo cp source /etc/apt/sources.list.d/percona.list
 
   sudo apt-get update
