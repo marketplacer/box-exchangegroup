@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.9
+version: 0.0.10
 inherits: wercker/ubuntu12.04-ruby2.0.0@0.3.0
 type: main
 platform: ubuntu@12.04
@@ -27,6 +27,8 @@ script: |
   sudo apt-get install mysql-server --fix-missing --fix-broken
   sudo apt-get install mysql-server-5.5
 
+  cat /etc/my.cnf || true
+  cat /etc/mysql/my.cnf || true
   echo "[mysqld]" > my.cnf
   echo "innodb_flush_log_at_trx_commit = 0" >> my.cnf
   echo "innodb_buffer_pool_size = 512M" >> my.cnf
