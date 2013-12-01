@@ -26,6 +26,7 @@ script: |
 
   # percona
   sudo apt-get remove mysql-client mysql-client-5.5 mysql-client-core-5.5
+  sudo rm -rf /etc/mysql
   sudo apt-get install percona-server-5.6 percona-server-client-5.6
 
   # mysql ramdisk
