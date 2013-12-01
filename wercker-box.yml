@@ -42,7 +42,7 @@ script: |
   sudo chmod -R 700 /var/lib/mysql
   sudo chown -R mysql:mysql /var/lib/mysql
 
-  sudo restart mysql
+  sudo /etc/init.d/mysql restart
 
   # node.js
   export NODEVERSION=0.10.17
