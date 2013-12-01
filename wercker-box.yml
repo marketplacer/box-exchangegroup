@@ -46,7 +46,7 @@ script: |
   tar xzf node-v$NODEVERSION.tar.gz
   cd node-v$NODEVERSION
   ./configure
-  make > /dev/null
+  make
   sudo make install > /dev/null
   cd $HOME
   rm -fr nodeinstall
