@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.7
+version: 0.0.8
 inherits: wercker/ubuntu12.04-ruby2.0.0@0.3.0
 type: main
 platform: ubuntu@12.04
@@ -36,22 +36,10 @@ script: |
   sudo rm -rf /etc/mysql
   sudo apt-get install mysql-server --fix-missing --fix-broken
   sudo apt-get install mysql-server-5.5
-  # sudo status mysql
-  # sudo ls /var/log
-  # sudo ls /var/log/mysql
-  # sudo cat /var/log/mysql.err
 
-  # false
-
-  # cat <<EOM > my.cnf
-  # [mysqld]
-  # innodb_flush_log_at_trx_commit = 0
-  # innodb_buffer_pool_size = 512M
-  # EOM
-
-  # sudo cp my.cnf /etc/mysql/my.cnf
-  # sudo /etc/init.d/mysql restart
-  # sudo update-rc.d mysql defaults
+  echo "[mysqld]\ninnodb_flush_log_at_trx_commit = 0\ninnodb_buffer_pool_size = 512M\n" > my.cnf
+  sudo cp my.cnf /etc/mysql/my.cnf
+  sudo ln -sf /etc/mysql/my.cnf /etc/my.cnf
 
   # node.js
   export NODEVERSION=0.10.22
