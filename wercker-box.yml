@@ -15,10 +15,16 @@ keywords:
   - sphinxsearch
   - karma
 script: |
-  sudo apt-get update
+  # sudo apt-get update
 
   # mysql
   sudo apt-get install mysql-server-5.5
+  sudo status mysql
+  sudo ls /var/log
+  sudo ls /var/log/mysql
+  sudo cat /var/log/mysql.err
+
+  false
 
   cat <<EOM > my.cnf
   [mysqld]
