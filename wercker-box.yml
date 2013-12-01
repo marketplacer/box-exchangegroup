@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.2
+version: 0.0.3
 inherits: wercker/ubuntu12.04-ruby2.0.0@0.3.0
 type: main
 platform: ubuntu@12.04
@@ -65,12 +65,12 @@ script: |
   sudo dpkg -i sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
 
   # phantomjs
-  wget https://phantomjs.googlecode.com/files/phantomjs-1.9.1-linux-x86_64.tar.bz2
-  tar xfj phantomjs-1.9.1-linux-x86_64.tar.bz2
-  sudo cp phantomjs-1.9.1-linux-x86_64/bin/phantomjs /usr/local/bin
+  wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
+  tar xfj phantomjs-1.9.2-linux-x86_64.tar.bz2
+  sudo cp phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/local/bin
 
-  # bundler 1.4 pre
-  sudo gem install bundler --pre -v 1.4.0.pre.2
+  # bundler 1.5 rc
+  sudo gem install bundler --pre -v 1.5.0.rc.1
 
   # karma
   sudo apt-get install -y libqt4-dev qt4-qmake
