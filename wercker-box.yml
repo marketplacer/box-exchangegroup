@@ -1,11 +1,11 @@
 name: exchangegroup
-version: 0.0.8
+version: 0.0.9
 inherits: wercker/ubuntu12.04-ruby2.0.0@0.3.0
 type: main
 platform: ubuntu@12.04
 description: Ruby 2, node.js, sphinx, phantomjs, karma, geocitylite.
 packages:
-  - mysql@5.6
+  - mysql@5.5
   - nodejs@0.10.17
   - sphinxsearch@2.0.8
   - phantomjs@1.9.1
@@ -14,16 +14,6 @@ keywords:
   - nodejs
   - sphinxsearch
   - karma
-init-script: |
-  sudo stop mysql
-  sudo mkdir /tmp/ramdisk
-  sudo mount -t tmpfs -o size=128M tmpfs /tmp/ramdisk/
-  sudo mv /var/lib/mysql /tmp/ramdisk/mysql
-  sudo ln -s /tmp/ramdisk/mysql/ /var/lib/mysql
-  sudo chmod -R 700 /var/lib/mysql
-  sudo chown -R mysql:mysql /var/lib/mysql
-  sudo start mysql
-
 script: |
   sudo apt-get update
 
@@ -40,6 +30,7 @@ script: |
   echo "[mysqld]\ninnodb_flush_log_at_trx_commit = 0\ninnodb_buffer_pool_size = 512M\n" > my.cnf
   sudo cp my.cnf /etc/mysql/my.cnf
   sudo ln -sf /etc/mysql/my.cnf /etc/my.cnf
+  sudo restart mysql
 
   # node.js
   export NODEVERSION=0.10.22
