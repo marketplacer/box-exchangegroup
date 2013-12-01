@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.3
+version: 0.0.4
 inherits: wercker/ubuntu12.04-ruby2.0.0@0.3.0
 type: main
 platform: ubuntu@12.04
@@ -15,19 +15,10 @@ keywords:
   - sphinxsearch
   - karma
 script: |
-  # percona apt
-  sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
-
-  echo "deb http://repo.percona.com/apt precise main" > source
-  echo "deb-src http://repo.percona.com/apt precise main" >> source
-  sudo cp source /etc/apt/sources.list.d/percona.list
-
   sudo apt-get update
 
   # percona
-  sudo apt-get remove mysql-client mysql-client-5.5 mysql-client-core-5.5
-  sudo rm -rf /etc/mysql
-  sudo apt-get install percona-server-5.5 percona-server-client-5.5
+  sudo apt-get install mysql-server-5.5
 
   # mysql ramdisk
   sudo /etc/init.d/mysql stop
