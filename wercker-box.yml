@@ -43,6 +43,7 @@ script: |
   sudo chown -R mysql:mysql /var/lib/mysql
 
   sudo /etc/init.d/mysql restart
+  sudo update-rc.d mysql defaults
 
   # node.js
   export NODEVERSION=0.10.17
