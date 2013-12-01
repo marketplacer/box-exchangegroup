@@ -27,12 +27,12 @@ script: |
   sudo apt-get install mysql-server --fix-missing --fix-broken
   sudo apt-get install mysql-server-5.5
 
-  echo "[mysqld]\ninnodb_flush_log_at_trx_commit = 0\ninnodb_buffer_pool_size = 512M\n" > my.cnf
+  echo "[mysqld]" > my.cnf
+  echo "innodb_flush_log_at_trx_commit = 0" >> my.cnf
+  echo "innodb_buffer_pool_size = 512M" >> my.cnf
   sudo cp my.cnf /etc/mysql/my.cnf
   sudo ln -sf /etc/mysql/my.cnf /etc/my.cnf
-  cat /etc/my.cnf
-  sudo restart mysql || true
-  sudo cat /var/log/upstart/mysql.log
+  sudo restart mysql
 
   # node.js
   export NODEVERSION=0.10.22
