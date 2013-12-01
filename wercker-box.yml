@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.6
+version: 0.0.7
 inherits: wercker/ubuntu12.04-ruby2.0.0@0.3.0
 type: main
 platform: ubuntu@12.04
@@ -28,6 +28,13 @@ script: |
   sudo apt-get update
 
   # mysql
+  sudo apt-get purge mysql-server
+  sudo apt-get purge mysql-common
+  sudo rm -rf /var/log/mysql
+  sudo rm -rf /var/log/mysql.*
+  sudo rm -rf /var/lib/mysql
+  sudo rm -rf /etc/mysql
+  sudo apt-get install mysql-server --fix-missing --fix-broken
   sudo apt-get install mysql-server-5.5
   # sudo status mysql
   # sudo ls /var/log
