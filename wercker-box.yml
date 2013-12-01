@@ -30,7 +30,9 @@ script: |
   echo "[mysqld]\ninnodb_flush_log_at_trx_commit = 0\ninnodb_buffer_pool_size = 512M\n" > my.cnf
   sudo cp my.cnf /etc/mysql/my.cnf
   sudo ln -sf /etc/mysql/my.cnf /etc/my.cnf
-  sudo restart mysql
+  cat /etc/my.cnf
+  sudo restart mysql || true
+  sudo cat /var/log/upstart/mysql.log
 
   # node.js
   export NODEVERSION=0.10.22
