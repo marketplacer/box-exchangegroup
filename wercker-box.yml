@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.10
+version: 0.0.11
 inherits: wercker/ubuntu12.04-ruby2.0.0@0.3.0
 type: main
 platform: ubuntu@12.04
