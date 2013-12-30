@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.12
+version: 0.0.13
 inherits: wercker/ubuntu12.04-webessentials@0.0.12
 type: main
 platform: ubuntu@12.04
@@ -24,7 +24,6 @@ script: |
   sudo apt-get remove ruby1.9.1
   wget "https://s3-ap-southeast-2.amazonaws.com/apt.teg.io/pool/r/ru/ruby_2.1.0.0%252Bfpm0_amd64.deb"
   sudo dpkg -i ruby_2.1.0.0%2Bfpm0_amd64.deb
-
   sudo gem install bundler --no-ri --no-rdoc
 
   # mysql
@@ -35,7 +34,7 @@ script: |
   sudo rm -rf /var/lib/mysql
   sudo rm -rf /etc/mysql
   sudo apt-get install mysql-server --fix-missing --fix-broken
-  sudo apt-get install mysql-server-5.5
+  sudo apt-get install mysql-server-5.5 libmysqlclient-dev
 
   echo "[mysqld]" > my.cnf
   echo "innodb_flush_log_at_trx_commit = 0" >> my.cnf
