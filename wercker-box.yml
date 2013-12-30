@@ -1,30 +1,30 @@
 name: exchangegroup
-version: 0.0.11
-inherits: wercker/ubuntu12.04-ruby2.0.0@0.3.0
+version: 0.0.12
+inherits: wercker/ubuntu12.04-webessentials@0.0.12
 type: main
 platform: ubuntu@12.04
-description: Ruby 2, node.js, sphinx, phantomjs, karma, geocitylite.
+description: "Ruby 2.1, node.js, sphinx, phantomjs, karma, geocitylite."
 packages:
+  - ruby@2.1
   - mysql@5.5
   - nodejs@0.10.17
   - sphinxsearch@2.0.8
   - phantomjs@1.9.1
 keywords:
+  - ruby
   - mysql
   - nodejs
   - sphinxsearch
   - karma
-init-script: |
-  sudo stop mysql
-  sudo mkdir /tmp/ramdisk
-  sudo mount -t tmpfs -o size=128M tmpfs /tmp/ramdisk/
-  sudo mv /var/lib/mysql /tmp/ramdisk/mysql
-  sudo ln -s /tmp/ramdisk/mysql/ /var/lib/mysql
-  sudo chmod -R 700 /var/lib/mysql
-  sudo chown -R mysql:mysql /var/lib/mysql
-  sudo start mysql
 script: |
   sudo apt-get update
+
+  # ruby
+  sudo apt-get install git zlib1g-dev libreadline-dev libqtwebkit-dev
+  sudo apt-get remove ruby1.9.1
+  wget "https://s3-ap-southeast-2.amazonaws.com/apt.teg.io/pool/r/ru/ruby_2.1.0.0%252Bfpm0_amd64.deb"
+  sudo dpkg -i ruby_2.1.0.0%252Bfpm0_amd64.deb
+  sudo gem install bundler --no-ri --no-rdoc
 
   # mysql
   sudo apt-get purge mysql-server
@@ -66,9 +66,6 @@ script: |
   wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
   tar xfj phantomjs-1.9.2-linux-x86_64.tar.bz2
   sudo cp phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/local/bin
-
-  # bundler 1.5 rc
-  sudo gem install bundler --pre -v 1.5.0.rc.1
 
   # karma
   sudo apt-get install -y libqt4-dev qt4-qmake
