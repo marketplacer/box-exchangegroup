@@ -23,7 +23,8 @@ script: |
   sudo apt-get install git zlib1g-dev libreadline-dev libqtwebkit-dev
   sudo apt-get remove ruby1.9.1
   wget "https://s3-ap-southeast-2.amazonaws.com/apt.teg.io/pool/r/ru/ruby_2.1.0.0%252Bfpm0_amd64.deb"
-  sudo dpkg -i ruby_2.1.0.0%252Bfpm0_amd64.deb
+  sudo dpkg -i ruby_2.1.0.0%2Bfpm0_amd64.deb
+
   sudo gem install bundler --no-ri --no-rdoc
 
   # mysql
