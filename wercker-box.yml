@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.14
+version: 0.0.15
 inherits: wercker/ubuntu12.04-webessentials@0.0.12
 type: main
 platform: ubuntu@12.04
@@ -71,6 +71,9 @@ script: |
   # karma
   sudo apt-get install -y libqt4-dev qt4-qmake
   sudo npm install -g karma
+
+  #jshint
+  sudo npm install -g jshint
 
   # GeoCityLite database
   curl -O http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
