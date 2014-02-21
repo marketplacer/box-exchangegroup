@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.15
+version: 0.0.16
 inherits: wercker/ubuntu12.04-webessentials@0.0.12
 type: main
 platform: ubuntu@12.04
@@ -58,6 +58,9 @@ script: |
   cd $HOME
   rm -fr nodeinstall
   node -v
+
+  # go
+  sudo apt-get install goose
 
   # sphinx
   wget http://sphinxsearch.com/files/sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
