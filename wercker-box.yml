@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.18
+version: 0.0.19
 inherits: wercker/ubuntu12.04-webessentials@0.0.12
 type: main
 platform: ubuntu@12.04
@@ -24,7 +24,7 @@ script: |
   sudo apt-get install -y python-software-properties
   sudo apt-add-repository -y ppa:ubuntu-sdk-team/ppa
   sudo apt-get update
-  sudo apt-get install -y libqt5webkit5-dev
+  sudo apt-get install -y libqt5webkit5-dev qt5-default
 
   # ruby
   sudo apt-get install -y git zlib1g-dev libreadline-dev
