@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.22
+version: 0.0.23
 inherits: wercker/ubuntu12.04-webessentials@0.0.12
 type: main
 platform: ubuntu@12.04
@@ -24,7 +24,7 @@ script: |
   sudo apt-get install -y python-software-properties
   sudo apt-add-repository -y ppa:ubuntu-sdk-team/ppa
   sudo apt-get update
-  sudo apt-get install -y qtdeclarative5-dev qt5-default
+  sudo apt-get install -y qtdeclarative5-dev qt5-default libqt5webkit5-dev
 
   # ruby
   sudo apt-get install -y git zlib1g-dev libreadline-dev
@@ -71,7 +71,6 @@ script: |
   sudo dpkg -i sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
 
   # karma
-  sudo apt-get install -y libqt4-dev qt4-qmake
   sudo npm install -g karma
 
   #jshint
