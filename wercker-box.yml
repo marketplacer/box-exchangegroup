@@ -66,9 +66,6 @@ script: |
   rm -fr nodeinstall
   node -v
 
-  # go
-  sudo apt-get install goose
-
   # sphinx
   wget http://sphinxsearch.com/files/sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
   sudo dpkg -i sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
