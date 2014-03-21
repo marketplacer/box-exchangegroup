@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.21
+version: 0.0.22
 inherits: wercker/ubuntu12.04-webessentials@0.0.12
 type: main
 platform: ubuntu@12.04
@@ -9,7 +9,7 @@ packages:
   - mysql@5.5
   - nodejs@0.10.17
   - sphinxsearch@2.0.8
-  - qt@5.2
+  - qt@5.0
 keywords:
   - ruby
   - mysql
@@ -24,7 +24,7 @@ script: |
   sudo apt-get install -y python-software-properties
   sudo apt-add-repository -y ppa:ubuntu-sdk-team/ppa
   sudo apt-get update
-  sudo apt-get install -y qtdeclarative5-dev
+  sudo apt-get install -y qtdeclarative5-dev qt5-default
 
   # ruby
   sudo apt-get install -y git zlib1g-dev libreadline-dev
