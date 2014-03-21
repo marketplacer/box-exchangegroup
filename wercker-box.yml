@@ -20,7 +20,7 @@ script: |
   sudo apt-get update
 
   # qt5
-  sudo apt-get uninstall -y libqtcore4
+  sudo apt-get remove -y libqtcore4
   sudo apt-get install -y python-software-properties
   sudo apt-add-repository -y ppa:ubuntu-sdk-team/ppa
   sudo apt-get update
