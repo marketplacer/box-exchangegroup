@@ -20,14 +20,14 @@ script: |
   sudo apt-get update
 
   # qt5
-  sudo apt-get install python-software-properties
-  sudo apt-add-repository ppa:ubuntu-sdk-team/ppa
+  sudo apt-get install -y python-software-properties
+  sudo apt-add-repository -y ppa:ubuntu-sdk-team/ppa
   sudo apt-get update
-  sudo apt-get install libqt5webkit5-dev
+  sudo apt-get install -y libqt5webkit5-dev
   qtchooser
 
   # ruby
-  sudo apt-get install git zlib1g-dev libreadline-dev libqtwebkit-dev
+  sudo apt-get install -y git zlib1g-dev libreadline-dev libqtwebkit-dev
   sudo apt-get remove ruby1.9.1
   wget "https://s3-ap-southeast-2.amazonaws.com/apt.teg.io/pool/r/ru/ruby_2.1.0.0%252Bfpm0_amd64.deb"
   sudo dpkg -i ruby_2.1.0.0%2Bfpm0_amd64.deb
@@ -41,8 +41,8 @@ script: |
   sudo rm -rf /var/log/mysql.*
   sudo rm -rf /var/lib/mysql
   sudo rm -rf /etc/mysql
-  sudo apt-get install mysql-server --fix-missing --fix-broken
-  sudo apt-get install mysql-server-5.5 libmysqlclient-dev
+  sudo apt-get install -y mysql-server --fix-missing --fix-broken
+  sudo apt-get install -y mysql-server-5.5 libmysqlclient-dev
 
   echo "[mysqld]" > my.cnf
   echo "innodb_flush_log_at_trx_commit = 0" >> my.cnf
