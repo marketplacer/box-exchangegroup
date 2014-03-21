@@ -1,15 +1,15 @@
 name: exchangegroup
-version: 0.0.16
+version: 0.0.17
 inherits: wercker/ubuntu12.04-webessentials@0.0.12
 type: main
 platform: ubuntu@12.04
-description: "Ruby 2.1, node.js, sphinx, phantomjs, karma, geocitylite."
+description: "Ruby 2.1, node.js, sphinx, qt5, karma, geocitylite."
 packages:
   - ruby@2.1
   - mysql@5.5
   - nodejs@0.10.17
   - sphinxsearch@2.0.8
-  - phantomjs@1.9.1
+  - qt@5.2
 keywords:
   - ruby
   - mysql
@@ -18,6 +18,13 @@ keywords:
   - karma
 script: |
   sudo apt-get update
+
+  # qt5
+  sudo apt-get install python-software-properties
+  sudo apt-add-repository ppa:ubuntu-sdk-team/ppa
+  sudo apt-get update
+  sudo apt-get install libqt5webkit5-dev
+  qtchooser
 
   # ruby
   sudo apt-get install git zlib1g-dev libreadline-dev libqtwebkit-dev
@@ -65,11 +72,6 @@ script: |
   # sphinx
   wget http://sphinxsearch.com/files/sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
   sudo dpkg -i sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
-
-  # phantomjs
-  wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
-  tar xfj phantomjs-1.9.2-linux-x86_64.tar.bz2
-  sudo cp phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/local/bin
 
   # karma
   sudo apt-get install -y libqt4-dev qt4-qmake
