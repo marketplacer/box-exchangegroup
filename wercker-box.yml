@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.17
+version: 0.0.18
 inherits: wercker/ubuntu12.04-webessentials@0.0.12
 type: main
 platform: ubuntu@12.04
@@ -20,14 +20,14 @@ script: |
   sudo apt-get update
 
   # qt5
+  sudo apt-get uninstall -y libqtcore4
   sudo apt-get install -y python-software-properties
   sudo apt-add-repository -y ppa:ubuntu-sdk-team/ppa
   sudo apt-get update
   sudo apt-get install -y libqt5webkit5-dev
-  qtchooser
 
   # ruby
-  sudo apt-get install -y git zlib1g-dev libreadline-dev libqtwebkit-dev
+  sudo apt-get install -y git zlib1g-dev libreadline-dev
   sudo apt-get remove ruby1.9.1
   wget "https://s3-ap-southeast-2.amazonaws.com/apt.teg.io/pool/r/ru/ruby_2.1.0.0%252Bfpm0_amd64.deb"
   sudo dpkg -i ruby_2.1.0.0%2Bfpm0_amd64.deb
