@@ -1,5 +1,5 @@
 name: exchangegroup
-version: 0.0.25
+version: 0.0.26
 inherits: wercker/ubuntu12.04-webessentials@0.0.12
 type: main
 platform: ubuntu@12.04
@@ -44,7 +44,7 @@ script: |
 
   # karma
   sudo apt-get install -y libqt4-dev qt4-qmake
-  sudo npm install -g karma-cli
+  sudo npm install -g  karma-jasmine karma-junit-reporter karma-phantomjs-launcher karma-coffee-preprocessor karma-cli
 
   # qt5
   sudo apt-get install -y python-software-properties
