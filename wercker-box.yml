@@ -20,11 +20,27 @@ keywords:
 script: |
   sudo apt-get update
 
-  # Do karma & phantomjs first, as they use qt4. We switch to qt5 later.
+  # Do karma & npm & phantomjs first, as they use qt4. We switch to qt5 later.
   # phantomjs
   wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
   tar xfj phantomjs-1.9.2-linux-x86_64.tar.bz2
   sudo cp phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/local/bin
+
+  # node.js
+  export NODEVERSION=0.10.22
+  sudo apt-get install -y wget build-essential
+  cd $HOME
+  mkdir nodeinstall
+  cd nodeinstall
+  wget http://nodejs.org/dist/v$NODEVERSION/node-v$NODEVERSION.tar.gz
+  tar xzf node-v$NODEVERSION.tar.gz
+  cd node-v$NODEVERSION
+  ./configure
+  make
+  sudo make install > /dev/null
+  cd $HOME
+  rm -fr nodeinstall
+  node -v
 
   # karma
   sudo apt-get install -y libqt4-dev qt4-qmake
@@ -59,22 +75,6 @@ script: |
   echo "innodb_buffer_pool_size = 512M" >> my.cnf
   sudo cp my.cnf /etc/mysql/conf.d/local.cnf
   sudo restart mysql
-
-  # node.js
-  export NODEVERSION=0.10.22
-  sudo apt-get install -y wget build-essential
-  cd $HOME
-  mkdir nodeinstall
-  cd nodeinstall
-  wget http://nodejs.org/dist/v$NODEVERSION/node-v$NODEVERSION.tar.gz
-  tar xzf node-v$NODEVERSION.tar.gz
-  cd node-v$NODEVERSION
-  ./configure
-  make
-  sudo make install > /dev/null
-  cd $HOME
-  rm -fr nodeinstall
-  node -v
 
   # sphinx
   wget http://sphinxsearch.com/files/sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
