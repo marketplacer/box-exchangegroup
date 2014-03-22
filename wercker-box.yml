@@ -1,14 +1,15 @@
 name: exchangegroup
-version: 0.0.23
+version: 0.0.24
 inherits: wercker/ubuntu12.04-webessentials@0.0.12
 type: main
 platform: ubuntu@12.04
-description: "Ruby 2.1, node.js, sphinx, qt5, karma, geocitylite."
+description: "Ruby 2.1, node.js, sphinx, qt5, karma, phantomjs, geocitylite."
 packages:
   - ruby@2.1
   - mysql@5.5
   - nodejs@0.10.17
   - sphinxsearch@2.0.8
+  - phantomjs@1.9.1
   - qt@5.0
 keywords:
   - ruby
@@ -19,8 +20,17 @@ keywords:
 script: |
   sudo apt-get update
 
+  # Do karma & phantomjs first, as they use qt4. We switch to qt5 later.
+  # phantomjs
+  wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
+  tar xfj phantomjs-1.9.2-linux-x86_64.tar.bz2
+  sudo cp phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/local/bin
+
+  # karma
+  sudo apt-get install -y libqt4-dev qt4-qmake
+  sudo npm install -g karma
+
   # qt5
-  sudo apt-get remove -y libqtcore4
   sudo apt-get install -y python-software-properties
   sudo apt-add-repository -y ppa:ubuntu-sdk-team/ppa
   sudo apt-get update
@@ -70,10 +80,7 @@ script: |
   wget http://sphinxsearch.com/files/sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
   sudo dpkg -i sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
 
-  # karma
-  sudo npm install -g karma
-
-  #jshint
+  # jshint
   sudo npm install -g jshint
 
   # GeoCityLite database
